@@ -21,3 +21,10 @@ vim.keymap.set("x", "p", "\"_dP")
 
 --highlight without jump to next word
 vim.keymap.set("n", "*", "*``")
+
+--code runner
+vim.keymap.set("n", "<leader>rf", ":RunCode<CR>")
+
+--my
+vim.keymap.set("n", "<C-/>", ": lua Comment()<CR>")
+vim.keymap.set("v", "<C-l>", ": lua Log()<CR>")
