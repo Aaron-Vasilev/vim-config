@@ -21,4 +21,7 @@ eslint.setup({
     report_unused_disable_directives = false,
     run_on = "type", -- or `save`
   },
+  handlers = {
+    ['window/showMessageRequest'] = function(_, result, params) return result end
+  }
 })
