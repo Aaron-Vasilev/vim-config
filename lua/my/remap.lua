@@ -26,5 +26,11 @@ vim.keymap.set("n", "*", "*``")
 vim.keymap.set("n", "<leader>rf", ":RunCode<CR>")
 
 --my
+vim.keymap.set("n", "<leader><CR>", "o<Esc>")
 vim.keymap.set("n", "<C-/>", ": lua Comment()<CR>")
 vim.keymap.set("v", "<C-l>", ": lua Log()<CR>")
+vim.keymap.set("i", "jj", "<Esc>")
+
+vim.api.nvim_set_keymap('n', '<Tab>', 'ddO', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-i>', '<C-^>', { noremap = true })
+
