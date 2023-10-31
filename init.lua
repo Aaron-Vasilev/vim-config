@@ -1,1 +1,5 @@
-require("my")
+require("my.functions")
+require("my.init")
+require("my.packer")
+require("my.remap")
+require("my.set")

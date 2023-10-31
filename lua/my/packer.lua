@@ -5,9 +5,17 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
+	  'nvim-telescope/telescope.nvim', tag = '0.1.4',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
+
+  use ({
+    'sonph/onehalf',
+    rtp = 'vim',
+    config = function()
+               vim.cmd('colorscheme onehalflight')
+             end
+  })
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/nvim-treesitter-context')
@@ -44,14 +52,6 @@ return require('packer').startup(function(use)
     as = 'rose-pine',
     config = function()
                vim.cmd('colorscheme rose-pine')
-             end
-  })
-
-  use ({
-    'sonph/onehalf',
-    rtp = 'vim',
-    config = function()
-               vim.cmd('colorscheme onehalflight')
              end
   })
 
