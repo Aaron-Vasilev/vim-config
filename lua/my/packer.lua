@@ -59,6 +59,7 @@ return require('packer').startup(function(use)
   use('rest-nvim/rest.nvim')
   use('CRAG666/code_runner.nvim')
   use('m4xshen/autoclose.nvim')
+  use('windwp/nvim-ts-autotag')
 
   use('MunifTanjim/eslint.nvim')
   use('jose-elias-alvarez/null-ls.nvim')
