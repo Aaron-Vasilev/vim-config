@@ -58,7 +58,7 @@ function Log()
     lines[1] = "console.log('† line " .. s_start[2] .. ' ' .. lines[1] .. "', " .. lines[1] .. ')'
   end
 
-  vim.api.nvim_buf_set_text(lines, s_start[2], 0, s_start[2], 0, lines)
+  vim.api.nvim_buf_set_text(0, s_start[2], 0, s_start[2], 0, lines)
 
   if vim.bo.filetype == 'rust' then
     vim.api.nvim_input('<Esc>f;a<cr><Esc>')
