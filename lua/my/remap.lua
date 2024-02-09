@@ -34,3 +34,5 @@ vim.keymap.set("i", "jj", "<Esc>")
 
 vim.api.nvim_set_keymap('n', '<C-t>', 'ddO', { noremap = true })
 
+vim.keymap.set("n", "gsh", ":Gitsigns preview_hunk<CR>")
+

@@ -65,6 +65,12 @@ return require('packer').startup(function(use)
   use('jose-elias-alvarez/null-ls.nvim')
   use('ggandor/leap.nvim')
 
-
+  -- Debugger
+  use('mfussenegger/nvim-dap')
+  use('rcarriga/nvim-dap-ui')
+  use('theHamsta/nvim-dap-virtual-text')
+  use('nvim-telescope/telescope-dap.nvim')
+  use('leoluz/nvim-dap-go')
+  use('mxsdev/nvim-dap-vscode-js')
 
 end)
