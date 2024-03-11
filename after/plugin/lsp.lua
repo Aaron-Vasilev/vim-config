@@ -6,24 +6,20 @@ local function is_valid_function_name(str)
 end
 
 local function filter_list(options)
-  local indexesToRemove = {}
+  local filtered_opts = {}
 
   for i,v in pairs(options.items) do
     local start = string.sub(v.text, 1, 4)
 
-    if start == 'impo' or
-       start == 'expo' or
-       is_valid_function_name(v.text)
+    if start ~= 'impo' and
+       start ~= 'expo' and
+       is_valid_function_name(v.text) == false
     then
-      table.insert(indexesToRemove, i)
+      table.insert(filtered_opts, options.items[i])
     end
   end
 
-  for i = #indexesToRemove, 1, -1 do
-    table.remove(options.items, indexesToRemove[i])
-  end
-
-  vim.fn.setloclist(0, {}, ' ', options)
+  vim.fn.setloclist(0, {}, ' ', { items = filtered_opts })
   vim.api.nvim_command('lopen')
 end
 
