@@ -1,11 +1,26 @@
 local lsp_zero = require('lsp-zero')
 
+local function is_valid_function_name(str)
+    local pattern = "^[a-zA-Z_$][a-zA-Z_$0-9]*,$"
+    return string.match(str, pattern) ~= nil
+end
+
 local function filter_list(options)
-  for k,v in pairs(options.items) do
+  local indexesToRemove = {}
+
+  for i,v in pairs(options.items) do
     local start = string.sub(v.text, 1, 4)
-    if start == 'impo' or start == 'expo' then
-      table.remove(options.items, k)
+
+    if start == 'impo' or
+       start == 'expo' or
+       is_valid_function_name(v.text)
+    then
+      table.insert(indexesToRemove, i)
     end
+  end
+
+  for i = #indexesToRemove, 1, -1 do
+    table.remove(options.items, indexesToRemove[i])
   end
 
   vim.fn.setloclist(0, {}, ' ', options)
@@ -29,13 +44,19 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'tsserver'},
+  ensure_installed = {'tsserver', 'lua_ls'},
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
       local lua_opts = lsp_zero.nvim_lua_ls()
       require('lspconfig').lua_ls.setup(lua_opts)
     end,
+  }
+})
+
+vim.filetype.add({
+  extension = {
+    templ = "templ"
   }
 })
 
@@ -47,6 +68,8 @@ cmp.setup({
     {name = 'path'},
     {name = 'nvim_lsp'},
     {name = 'nvim_lua'},
+    {name = 'luasnip', keyword_length = 2},
+    {name = 'buffer', keyword_length = 3},
   },
   formatting = lsp_zero.cmp_format(),
   mapping = cmp.mapping.preset.insert({

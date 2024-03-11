@@ -54,6 +54,8 @@ function Log()
 
   if vim.bo.filetype == 'rust' then
     lines[1] = "println!(\"† line " .. s_start[2] .. ' ' .. lines[1] .. ' {:?}\", ' .. lines[1] .. ');'
+  elseif vim.bo.filetype == 'go' then
+    lines[1] = "fmt.Println(\"† line " .. s_start[2] .. ' ' .. lines[1] .. '", ' .. lines[1] .. ')'
   else
     lines[1] = "console.log('† line " .. s_start[2] .. ' ' .. lines[1] .. "', " .. lines[1] .. ')'
   end

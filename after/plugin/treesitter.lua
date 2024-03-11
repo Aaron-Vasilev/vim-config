@@ -24,7 +24,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   },
 
-  disable = { "html" },
+--   disable = { },
 
   autotag = {
     enable = true,
