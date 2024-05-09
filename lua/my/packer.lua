@@ -9,6 +9,13 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  use('junegunn/fzf')
+  use('junegunn/fzf.vim')
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make'
+  }
+
   use ({
     'sonph/onehalf',
     rtp = 'vim',
@@ -59,7 +66,6 @@ return require('packer').startup(function(use)
   use('CRAG666/code_runner.nvim')
   use('m4xshen/autoclose.nvim')
   use('windwp/nvim-ts-autotag')
-
   use('jose-elias-alvarez/null-ls.nvim')
   use('ggandor/leap.nvim')
 
