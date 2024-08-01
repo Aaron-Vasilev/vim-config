@@ -4,3 +4,4 @@ require("autoclose").setup({
     pair_spaces = true,
   }
 })
+-- Shift + Enter
