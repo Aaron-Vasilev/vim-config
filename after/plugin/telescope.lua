@@ -1,4 +1,5 @@
-require('telescope').setup {
+local telescope = require('telescope')
+telescope.setup {
   extentions = {
     fzf = {
       fuzzy = true,                    -- false will only do exact matching
@@ -15,7 +16,7 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader><leader>', builtin.find_files, {})
 vim.keymap.set('n', '<leader>f', builtin.git_files, {})
 vim.keymap.set('n', '<leader>s', function()
-  local search_string = vim.fn.input("Grep🔍 >")
+  local search_string = vim.fn.input("Grep🔍 ▶")
   if search_string ~= "" then
     builtin.grep_string({
       search = search_string,
@@ -24,3 +25,4 @@ vim.keymap.set('n', '<leader>s', function()
   end
 end)
 -- vim.keymap.set("n", "<leader>vrr", ": Telescope lsp_references<CR>")
+require("telescope").load_extension("git_worktree")

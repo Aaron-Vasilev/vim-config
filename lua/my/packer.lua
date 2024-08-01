@@ -9,6 +9,7 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  use('nvim-telescope/telescope-fzy-native.nvim')
   use('junegunn/fzf')
   use('junegunn/fzf.vim')
   use {
@@ -29,8 +30,12 @@ return require('packer').startup(function(use)
   use('nvim-treesitter/playground')
   use('theprimeagen/harpoon')
   use('mbbill/undotree')
+
+  -- Git
   use('tpope/vim-fugitive')
   use('lewis6991/gitsigns.nvim')
+  use('theprimeagen/git-worktree.nvim')
+  use('nvim-lua/popup.nvim')
 
   use {
     'VonHeikemen/lsp-zero.nvim',
@@ -72,9 +77,11 @@ return require('packer').startup(function(use)
   -- Debugger
   use('mfussenegger/nvim-dap')
   use('rcarriga/nvim-dap-ui')
+  use('nvim-neotest/nvim-nio')
   use('theHamsta/nvim-dap-virtual-text')
   use('nvim-telescope/telescope-dap.nvim')
   use('leoluz/nvim-dap-go')
   use('mxsdev/nvim-dap-vscode-js')
+  use ('microsoft/vscode-js-debug')
 
 end)

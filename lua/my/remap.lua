@@ -34,5 +34,16 @@ vim.keymap.set("i", "jj", "<Esc>")
 
 vim.api.nvim_set_keymap('n', '<C-t>', 'ddO', { noremap = true })
 
+--git
 vim.keymap.set("n", "gsh", ":Gitsigns preview_hunk<CR>")
+vim.keymap.set("n", "gcd", ":Telescope git_worktree<CR>")
+
+--lua 
+vim.keymap.set('n', 'gat', function()
+  local tree_name = vim.fn.input("New 🌳 name ▶")
+  if tree_name ~= "" then
+    require("git-worktree").create_worktree(tree_name, tree_name)
+  end
+end)
+
 
