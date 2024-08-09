@@ -82,6 +82,6 @@ return require('packer').startup(function(use)
   use('nvim-telescope/telescope-dap.nvim')
   use('leoluz/nvim-dap-go')
   use('mxsdev/nvim-dap-vscode-js')
-  use ('microsoft/vscode-js-debug')
+  use('microsoft/vscode-js-debug')
 
 end)
