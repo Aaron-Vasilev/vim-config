@@ -84,4 +84,7 @@ return require('packer').startup(function(use)
   use('mxsdev/nvim-dap-vscode-js')
   use('microsoft/vscode-js-debug')
 
+  use('tpope/vim-dadbod')
+  use('kristijanhusak/vim-dadbod-ui')
+  use('kristijanhusak/vim-dadbod-completion')
 end)

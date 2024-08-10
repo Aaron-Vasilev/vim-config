@@ -1,10 +1,14 @@
-function CommentLine()
-  local line = vim.api.nvim_get_current_line()
+local function commentLine(line)
+  if line:match("^%s*$") then
+    do return line end
+  end
+
+  local filetype = vim.bo.filetype
   local first_symbols = string.sub(line, 0, 2)
   local is_commented = first_symbols == "//" or first_symbols == "--"
 
   if is_commented == false then
-    if vim.bo.filetype == 'lua' then
+    if filetype == 'lua' or filetype == 'sql' then
       line = '-- ' .. line
     else
       line = '// ' .. line
@@ -13,7 +17,13 @@ function CommentLine()
     line = string.sub(line, 4)
   end
 
-  vim.api.nvim_set_current_line(line)
+  return line
+end
+
+function CommentLine()
+  local line = vim.api.nvim_get_current_line()
+
+  vim.api.nvim_set_current_line(commentLine(line))
 end
 
 function CommentBlock()
@@ -22,24 +32,16 @@ function CommentBlock()
   local line_start = vstart[2]
   local line_end = vend[2]
   local lines = vim.fn.getline(line_start,line_end)
-  local first_symbols = string.sub(lines[1], 0, 2)
-  local is_commented = first_symbols == "//" or first_symbols == "--"
 
-  for k in pairs(lines) do
-    if is_commented == false then
-      if vim.bo.filetype == 'lua' then
-        lines[k] = '-- ' .. lines[k]
-      else
-        lines[k] = '// ' .. lines[k]
-      end
-    else
-      lines[k] = string.sub(lines[k], 4)
-    end
+  if type(lines) ~= 'table' then
+    do return error('Lolly, invalid type: ' .. type(lines)) end
+  end
 
+  for k, line in pairs(lines) do
+    lines[k] = commentLine(line)
   end
 
   vim.api.nvim_buf_set_lines(0, line_start - 1, line_end, false, lines)
-
 end
 
 function Log()
@@ -72,15 +74,15 @@ function Log()
 end
 
 function Dump(o)
-   if type(o) == 'table' then
-      local s = '{ '
-      for k,v in pairs(o) do
-         if type(k) ~= 'number' then k = '"'..k..'"' end
-         s = s .. '['..k..'] = ' .. Dump(v) .. ','
-      end
-      return s .. '} '
-   else
-      return tostring(o)
-   end
+  if type(o) == 'table' then
+    local s = '{ '
+    for k,v in pairs(o) do
+      if type(k) ~= 'number' then k = '"'..k..'"' end
+      s = s .. '['..k..'] = ' .. Dump(v) .. ','
+    end
+    return s .. '} '
+  else
+    return tostring(o)
+  end
 end
 
