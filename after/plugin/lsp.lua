@@ -13,6 +13,7 @@ local function filter_list(options)
 
     if start ~= 'impo' and
        start ~= 'expo' and
+       start ~= 'func' and
        is_valid_function_name(v.text) == false
     then
       table.insert(filtered_opts, options.items[i])
@@ -23,7 +24,7 @@ local function filter_list(options)
   vim.api.nvim_command('lopen')
 end
 
-lsp_zero.on_attach(function(client, bufnr)
+lsp_zero.on_attach(function(_, bufnr)
   local opts = {buffer = bufnr, remap = true}
 
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
