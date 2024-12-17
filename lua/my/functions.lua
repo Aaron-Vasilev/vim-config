@@ -5,11 +5,13 @@ local function commentLine(line)
 
   local filetype = vim.bo.filetype
   local first_symbols = string.sub(line, 0, 2)
-  local is_commented = first_symbols == "//" or first_symbols == "--"
+  local is_commented = first_symbols == "//" or first_symbols == "--" or first_symbols == '# '
 
   if is_commented == false then
     if filetype == 'lua' or filetype == 'sql' then
       line = '-- ' .. line
+    elseif filetype == 'sh' then
+      line = '#  ' .. line
     else
       line = '// ' .. line
     end

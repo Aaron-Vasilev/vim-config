@@ -25,5 +25,5 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "go",
-    command = "setlocal noexpandtab shiftwidth=4 softtabstop=0 tabstop=4",
+    command = "setlocal noexpandtab shiftwidth=2 softtabstop=0 tabstop=2",
 })

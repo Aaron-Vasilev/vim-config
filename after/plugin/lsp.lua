@@ -11,10 +11,12 @@ local function filter_list(options)
   for i,v in pairs(options.items) do
     local start = string.sub(v.text, 1, 4)
 
-    if start ~= 'impo' and
-       start ~= 'expo' and
-       start ~= 'func' and
-       is_valid_function_name(v.text) == false
+    if
+      start ~= 'impo' and
+      start ~= 'expo' and
+      start ~= 'func' and
+      is_valid_function_name(v.text) == false and
+      v.text:match("^  .*,$") == nil
     then
       table.insert(filtered_opts, options.items[i])
     end
@@ -39,9 +41,11 @@ lsp_zero.on_attach(function(_, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-require('mason').setup({})
+require('mason').setup({
+  PATH = "prepend"
+})
 require('mason-lspconfig').setup({
-  ensure_installed = {'tsserver', 'lua_ls'},
+  ensure_installed = {'lua_ls'},
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()

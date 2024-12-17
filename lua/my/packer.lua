@@ -17,14 +17,6 @@ return require('packer').startup(function(use)
     run = 'make'
   }
 
-  use ({
-    'sonph/onehalf',
-    rtp = 'vim',
-    config = function()
-               vim.cmd('colorscheme onehalflight')
-             end
-  })
-
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/nvim-treesitter-context')
   use('nvim-treesitter/playground')
@@ -88,4 +80,7 @@ return require('packer').startup(function(use)
   use('tpope/vim-dadbod')
   use('kristijanhusak/vim-dadbod-ui')
   use('kristijanhusak/vim-dadbod-completion')
+
+  use('mattn/emmet-vim')
+  use('christoomey/vim-tmux-navigator')
 end)
