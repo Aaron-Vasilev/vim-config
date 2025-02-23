@@ -61,8 +61,6 @@ return require('packer').startup(function(use)
   })
 
   use('CRAG666/code_runner.nvim')
-  use('m4xshen/autoclose.nvim')
-  use('windwp/nvim-ts-autotag')
   use('jose-elias-alvarez/null-ls.nvim')
   use('ggandor/leap.nvim')
 
@@ -81,6 +79,17 @@ return require('packer').startup(function(use)
   use('kristijanhusak/vim-dadbod-ui')
   use('kristijanhusak/vim-dadbod-completion')
 
-  use('mattn/emmet-vim')
   use('christoomey/vim-tmux-navigator')
+
+  -- HTML
+  use('mattn/emmet-vim')
+  use('m4xshen/autoclose.nvim')
+  use('windwp/nvim-ts-autotag')
+  use {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-autopairs").setup {}
+    end
+  }
 end)

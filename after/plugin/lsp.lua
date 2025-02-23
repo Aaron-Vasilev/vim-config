@@ -1,3 +1,4 @@
+-- :LspInto
 local lsp_zero = require('lsp-zero')
 
 local function is_valid_function_name(str)
@@ -16,7 +17,7 @@ local function filter_list(options)
       start ~= 'expo' and
       start ~= 'func' and
       is_valid_function_name(v.text) == false and
-      v.text:match("^  .*,$") == nil
+      v.text:match("^  " .. v.text .. "*,$") == nil
     then
       table.insert(filtered_opts, options.items[i])
     end

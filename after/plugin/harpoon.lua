@@ -1,3 +1,6 @@
+require("harpoon").setup({
+  mark_branch = true,
+})
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 
