@@ -88,3 +88,7 @@ cmp.setup.filetype({ "sql" }, {
     { name = "buffer" },
   }
 })
+
+require'lspconfig'.html.setup{
+  filetypes = { "html", "javascript" },
+}
